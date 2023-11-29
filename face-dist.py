@@ -6,6 +6,7 @@ import math
 import torch
 import pickle
 import argparse
+import json
 
 
 # LFW functions taken from David Sandberg's FaceNet implementation
@@ -41,6 +42,8 @@ def im2tensor(img_fn,resize=(160,160)):
 def main():
     parser = argparse.ArgumentParser(description="Face detection")
     parser.add_argument('--image', type=str, default=None, help='Image to identify')
+    parser.add_argument('--raw-embedding', action='store_true', help='If set, outputs the raw embedding')
+    parser.add_argument('--compare-embedding', default=None, help='Embedding to compare to, in format: \'[0.000, 0.111, ...]\'')
     parser.add_argument('--compare', type=str, default=None, help='Image to compare against')
     parser.add_argument('--embeddings', type=str, default=None, help='Filename of an embeddings listing to find the closest match against')
     parser.add_argument('--top', type=int, default=5, help='Top N to display when embeddings are provided')
@@ -93,6 +96,22 @@ def main():
         for d, name in sorted(dists, key=lambda x: x[0])[:args.top]:
             print('#%d:  %.4f  %s' % (i, d, name))
             i += 1
+
+    elif args.raw_embedding:
+
+        t = im2tensor(args.image)
+        emb = resnet(t.unsqueeze(0))
+        print(emb[0].tolist())
+
+    elif args.compare_embedding is not None:
+
+        t = im2tensor(args.image)
+        emb = resnet(t.unsqueeze(0))
+
+        cmp_emb = torch.tensor(json.loads(args.compare_embedding)).unsqueeze(0)
+
+        dist = torch.cdist(emb, cmp_emb)
+        print(float(dist))
 
     else:
         print('Error: must specify either --compare or --embeddings')
