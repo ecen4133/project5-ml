@@ -1,8 +1,8 @@
-from PIL import Image
-from facenet_pytorch import InceptionResnetV1   #, MTCNN
-from torchvision import datasets, transforms
+from PIL import Image                           # May need: pip3 install Pillow
+from facenet_pytorch import InceptionResnetV1   # May need: pip3 install facenet_pytorch
+from torchvision import datasets, transforms    # May need: pip3 install torch torchvision
 import torch
-import numpy as np
+import numpy as np                              # May need: pip3 install numpy
 import argparse
 
 def remove_transparency(im):
