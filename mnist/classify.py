@@ -7,9 +7,6 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 from PIL import Image
-import matplotlib.pyplot as plt
-import numpy as np
-import random
 
 
 

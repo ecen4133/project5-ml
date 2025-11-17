@@ -1,0 +1,16 @@
+{
+	"name": "Project 5",
+	
+	"image": "ghcr.io/ecen4133/project5:latest",
+	
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+	],
+	
+	"workspaceFolder": "/workspace",
+	"remoteUser": "root",
+	
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {}
+	}
+}
