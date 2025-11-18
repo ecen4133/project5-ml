@@ -110,7 +110,7 @@ def main():
 
         cmp_emb = torch.tensor(json.loads(args.compare_embedding)).unsqueeze(0)
 
-        dist = torch.cdist(emb, cmp_emb)
+        dist = torch.cdist(emb, cmp_emb).detach()
         print(float(dist))
 
     else:
