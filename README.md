@@ -4,11 +4,29 @@ This project uses Docker for a consistent development environment.
 
 ## Prerequisites
 
-Install [Docker Desktop](https://www.docker.com/products/docker-desktop) and ensure it's running.
+Create a Virtual Environment:
+
+`python3 -m venv ./venv`
+
+And activate it:
+
+`source ./venv/bin/activate`
+
+Then, install the necessary libraries:
+
+`pip install --no-cache-dir -r ./requirements.txt`
+
+
+## Optional: Using Docker
+
+We also provide the docker container we'll use for grading if you want to use that
+(though the above virtual environment should be sufficient).
+
+To use this, you'll need to install [Docker Desktop](https://www.docker.com/products/docker-desktop) and ensure it's running.
 
 You can test if you have Docker installed correctly by running `docker run -it --rm hello-world`
 
-## Option 1: VS Code Dev Container
+### Option 1: VS Code Dev Container
 
 For VS Code users, you can open the project inside a dev container:
 
@@ -22,7 +40,7 @@ And that's it! You should be able to see that your environment has changed to "D
 
 The dev container configuration may also work on other editors that supports dev containers (such as JetBrains). Check your editor's documentation for instructions.
 
-## Option 2: Command Line Docker
+### Option 2: Command Line Docker
 
 If you use an editor that does not support dev containers, you can clone the project and edit locally.
 
